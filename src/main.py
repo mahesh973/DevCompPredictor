@@ -12,7 +12,6 @@ from langchain_openai import ChatOpenAI
 from langchain.agents.agent_types import AgentType
 from langchain_experimental.agents.agent_toolkits import create_pandas_dataframe_agent
 from langchain.prompts import ChatPromptTemplate
-from dotenv import load_dotenv
 from collections import Counter
 
 from plotting_helpers import survey_responses_count, median_compensation, dev_type, industry_salaries, years_WorkExp, median_salary_Ed_Level
