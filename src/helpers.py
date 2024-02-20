@@ -1,3 +1,63 @@
+import pickle
+import pandas as pd
+
+renaming_education_level = {'Bachelor’s degree (B.A., B.S., B.Eng., etc.)' : 'Bachelors',
+       'Master’s degree (M.A., M.S., M.Eng., MBA, etc.)' : 'Masters',
+       'Some college/university study without earning a degree' : 'Some College',
+       'Professional degree (JD, MD, Ph.D, Ed.D, etc.)' : 'PhD, Postdoc',
+       'Secondary school (e.g. American high school, German Realschule or Gymnasium, etc.)' : 'Secondary School',
+       'Associate degree (A.A., A.S., etc.)' : 'Associate degree',
+       'Primary/elementary school' : 'Primary School',
+       'Something else' : 'Something else'}
+
+OrgSize_keys = ['Less than 20 employees', '20 to 99 employees','100 to 499 employees', '500 to 999 employees','1,000 to 4,999 employees',
+  '5,000 to 9,999 employees','10,000 or more employees']
+
+Industry_keys = ['Information Services, IT, Software Development, or other Technology','Other', 'Financial Services', 'Healthcare',
+              'Manufacturing, Transportation, or Supply Chain', 'Retail and Consumer Services', 'Insurance', 'Higher Education','Advertising Services']
+
+DevType_keys = ['Developer, full-stack', 'Developer, back-end', 'Developer, front-end','Developer, desktop or enterprise applications',
+                'Developer, embedded applications or devices', 'Engineering manager', 'Developer, mobile', 'Engineer, data',
+                'Cloud infrastructure engineer', 'DevOps specialist','Senior Executive (C-Suite, VP, etc.)',
+                'Data scientist or machine learning specialist','Research & Development role',
+                'Engineer, site reliability', 'Other (please specify):']
+
+EdLevel_keys = ["Primary School", "Secondary School", "Some College", "Associate Degree",
+                                                    "Bachelors", "Masters", "PhD, Postdoc"]
+
+Age_keys = ["18-24 years old","25-34 years old", "35-44 years old", "45-54 years old", "55-64 years old","65 years or older"]
+
+RemoteWork_keys = ["Remote", "In-person", "Hybrid (some remote, some in-person)"]
+
+IcorPM_keys = ["Individual contributor", "People manager"]
+
+Employment_keys = ["Employed, full-time", "Employed, full-time;Independent contractor, freelancer, or self-employed","Employed, part-time",
+                    "Independent contractor, freelancer, or self-employed","Employed, full-time;Employed, part-time"]
+
+salary_ranges = {
+    'Low' : r'40,000 - 105,000',
+    'Low-Mid' : r'105,500 - 135,000',
+    'Mid' : r'135,500 - 162,000',
+    'Mid-High' : r'162,500 - 200,000',
+    'High' : r'200,400 - 300,000',
+}
+
+slider_ranges = {
+    'Low': (40000, 105000),
+    'Low-Mid': (105500, 135000),
+    'Mid': (135500, 162000),
+    'Mid-High': (162500, 200000),
+    'High': (200400, 300000),
+}
+
+
+# Calculating various statistics (mean, median, min, max, percentiles) for yearly converted compensation grouped by country. 
+def percentile(n):
+    def percentile_(x):
+        return x.quantile(n)
+    percentile_.__name__ = 'percentile_{:02.0f}'.format(n*100)
+    return percentile_
+
 def records_to_consider(column_counts, threshold = 1000):
     """
     Filters entities with counts above a specified threshold.
@@ -66,3 +126,28 @@ def convert_OrgSize(size):
         return 'Frelancer/Sole Proprietor'
     return size
 
+
+def perform_encoding(input_features):
+    # Load the encoders
+    with open('../saved_weights/encoders.pkl', 'rb') as file:
+        encoders = pickle.load(file)
+
+    # Load the mappings
+    with open('../saved_weights/education_level_map.pkl', 'rb') as file:
+        education_level_map = pickle.load(file)
+
+    # Convert input features to DataFrame
+    input_df = pd.DataFrame(input_features)
+    
+    # Apply LabelEncoders to categorical columns
+    for column, encoder in encoders.items():
+        input_df[column] = encoder.transform(input_df[column])
+    
+    # Map ordinal values directly
+    input_df['EdLevel'] = input_df['EdLevel'].map(education_level_map)
+
+    # Return processed DataFrame ready for model input
+    desired_order = ['Age', 'Employment', 'RemoteWork', 'EdLevel', 'YearsCodePro', 'DevType', 'Industry', 'OrgSize', 'ICorPM']
+    input_df = input_df[desired_order]
+
+    return input_df
