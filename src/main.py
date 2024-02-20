@@ -20,11 +20,9 @@ from plotting_helpers import languages_worked_with, databases_worked_with
 from helpers import salary_ranges, slider_ranges, perform_encoding
 from helpers import OrgSize_keys, EdLevel_keys, Industry_keys, DevType_keys, Age_keys, RemoteWork_keys, IcorPM_keys, Employment_keys
 
-# Fetching the OPENAI API_KEY
-load_dotenv()
 
 # Set API Key and initialize agents
-API_KEY = os.environ["OPENAI_API_KEY"]
+API_KEY = st.secrets["OPENAI_API_KEY"]
 df = pd.read_csv("../stack-overflow-developer-survey-results-2023/survey_results_public.csv")
 chat = ChatOpenAI(model_name='gpt-4-0613', temperature=0.2, api_key=API_KEY)
 agent = create_pandas_dataframe_agent(chat, df, verbose=True)
