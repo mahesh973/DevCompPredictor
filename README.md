@@ -30,6 +30,7 @@ Before installing the application, ensure you have the following key dependencie
 
 - Python 3.9 or higher
 - Pandas
+- Plotly
 - Matplotlib
 - Scikit-learn
 - Streamlit
