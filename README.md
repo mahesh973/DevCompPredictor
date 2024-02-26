@@ -16,7 +16,9 @@ StackOverflow Insights 2023 is an application designed to provide users with in-
 
 ![Demo](https://github.com/mahesh973/DevCompPredictor-Capstone/assets/59694546/35a69e20-ece6-47c9-b755-4d49c15f4970)
 
-## System Architecture
+&nbsp;
+
+## Project Workflow
 
 ![System Architecture](https://github.com/mahesh973/DevCompPredictor-Capstone/assets/59694546/0bee2a83-3db3-4400-b5f6-6c10bcea9274)
 
