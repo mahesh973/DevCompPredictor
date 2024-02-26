@@ -10,7 +10,7 @@ StackOverflow Insights 2023 is an application designed to provide users with in-
 
 1. **Key Insights**: Presents major findings and trends from the survey data through visually appealing charts and graphs.
 2. **Compensation Range Predictor**: Allows users to estimate their potential salary range based on their role, years of coding experience, Industry, and other relevant factors.
-3. **Chat Feature**: Offers an interactive chat interface where users can ask specific questions about the survey data.
+3. **Chat Feature**: Offers an interactive chat interface powered by `GPT-4`, where users can ask specific questions about the survey data.
 
 ## App Demo
 
