@@ -65,7 +65,7 @@ After completing these steps, the application should be running on your local se
 
 This application is built using Streamlit. For more detailed information to explore the raw data, visit the official StackOverflow survey page:
 
-![StackOverflow Developer Survey 2023](https://insights.stackoverflow.com/survey)
+[StackOverflow Developer Survey 2023](https://insights.stackoverflow.com/survey)
 
 Feel free to contribute to the project by submitting issues or pull requests on GitHub. Your feedback and contributions are highly appreciated!
 
