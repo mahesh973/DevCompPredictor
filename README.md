@@ -14,7 +14,7 @@ StackOverflow Insights 2023 is an application designed to provide users with in-
 
 ## App Demo
 
-![Demo]([demo.gif](https://github.com/mahesh973/DevCompPredictor-Capstone/assets/59694546/35a69e20-ece6-47c9-b755-4d49c15f4970))
+![Demo](https://github.com/mahesh973/DevCompPredictor-Capstone/assets/59694546/35a69e20-ece6-47c9-b755-4d49c15f4970)
 
 ## System Architecture
 
@@ -63,7 +63,7 @@ After completing these steps, the application should be running on your local se
 
 This application is built using Streamlit. For more detailed information to explore the raw data, visit the official StackOverflow survey page:
 
-StackOverflow Developer Survey 2023[https://insights.stackoverflow.com/survey]
+![StackOverflow Developer Survey 2023](https://insights.stackoverflow.com/survey)
 
 Feel free to contribute to the project by submitting issues or pull requests on GitHub. Your feedback and contributions are highly appreciated!
 
