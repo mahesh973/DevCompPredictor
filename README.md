@@ -48,7 +48,7 @@ git clone "https://github.com/mahesh973/DevCompPredictor-Capstone"
 ```
 **2. Navigate to the Directory**
 ```python
-cd DevCompPredictor-Capstone
+cd "DevCompPredictor-Capstone"
 ```
 **3. Install the necessary dependencies**
 ```python
